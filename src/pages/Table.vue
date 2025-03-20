@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DownloadOutlined } from '@ant-design/icons-vue'
+import { useCountStore } from '@/store/count.ts'
+
 const size = ref<SizeType>('large');
+const countStore = useCountStore()
+
 </script>
 
 <template>
     <a-typography-title style="text-align: center">水位表</a-typography-title>
+
     <a-divider />
+
     <div style="background: #ececec; padding: 30px">
         <a-row :gutter="16">
             <a-col :span="8">
@@ -17,7 +23,7 @@ const size = ref<SizeType>('large');
                     <p>4、 去年同期 8:00 水位</p>
                     <p>5、 今日昨日8:00 水位对比</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" :size="size">
+                    <a-button type="primary" shape="round" @click="countStore.clickDownload()" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>
@@ -31,7 +37,7 @@ const size = ref<SizeType>('large');
                     <p>2、 4小时前整点时间对应水位</p>
                     <p>3、 8小时前整点时间对应水位</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" :size="size">
+                    <a-button type="primary" shape="round" @click="countStore.clickDownload()" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>
@@ -45,7 +51,7 @@ const size = ref<SizeType>('large');
                     <p>2、 4小时前整点时间对应水位</p>
                     <p>3、 8小时前整点时间对应水位</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" :size="size">
+                    <a-button type="primary" shape="round" @click="countStore.clickDownload()" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>
@@ -74,4 +80,5 @@ const size = ref<SizeType>('large');
             4、本站严格使用目标时间准确数据，有直接用，没有的就填写 0。
         </a-typography-paragraph>
     </div>
+
 </template>

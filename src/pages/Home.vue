@@ -18,7 +18,7 @@ const { total_count, this_year_count, visits, downloads } = storeToRefs(countSto
     <a-typography-paragraph>
         传统水位数据发布依赖人工查询记录，耗时耗力，且数据易摘抄错误，又或者达到相应水位而忘记标注对应颜色情况时有发生，尤其是在防汛夜班期间。
     </a-typography-paragraph>
-
+    
     <a-typography-title :level="2">诞生</a-typography-title>
     <a-typography-paragraph>
         「鸠江水位小助手」应防汛值班工作需求而生，以<a-typography-text mark>自动水位数据提取</a-typography-text>+<a-typography-text
@@ -42,7 +42,7 @@ const { total_count, this_year_count, visits, downloads } = storeToRefs(countSto
         「鸠江水位小助手平台」以​“<a-typography-text strong>精准、可靠</a-typography-text>”​为核心，让每个水位数据价值极致释放。
     </a-typography-paragraph>
 
-    <a-divider>服务数据</a-divider>
+    <a-divider>站点数据</a-divider>
 
     <a-row>
         <a-col :span="6">

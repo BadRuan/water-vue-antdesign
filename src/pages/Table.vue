@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { DownloadOutlined } from '@ant-design/icons-vue'
 import { useCountStore } from '@/store/count.ts'
 
-const size = ref<SizeType>('large');
+const size = ref('large');
 const countStore = useCountStore()
 
 </script>
@@ -23,7 +23,8 @@ const countStore = useCountStore()
                     <p>4、 去年同期 8:00 水位</p>
                     <p>5、 今日昨日8:00 水位对比</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" @click="countStore.clickDownload()" :size="size">
+                    <a-button type="primary" shape="round" href="/table/1" target="_blank"
+                        @click="countStore.clickDownload()" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>
@@ -37,7 +38,8 @@ const countStore = useCountStore()
                     <p>2、 4小时前整点时间对应水位</p>
                     <p>3、 8小时前整点时间对应水位</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" @click="countStore.clickDownload()" :size="size">
+                    <a-button type="primary" shape="round" href="/table/2" target="_blank"
+                        @click="countStore.clickDownload()" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>
@@ -51,7 +53,8 @@ const countStore = useCountStore()
                     <p>2、 4小时前整点时间对应水位</p>
                     <p>3、 8小时前整点时间对应水位</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" @click="countStore.clickDownload()" :size="size">
+                    <a-button type="primary" shape="round" href="/table/2" target="_blank"
+                        @click="countStore.clickDownload()" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>

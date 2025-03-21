@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCountStore } from '@/store/count.ts'
 
 const countStore = useCountStore()
 const { total_count, this_year_count, visits, downloads } = storeToRefs(countStore)
 
-// countStore.loadData()
+countStore.loadData()
 </script>
 
 <template>

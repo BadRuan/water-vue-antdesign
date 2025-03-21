@@ -16,6 +16,8 @@ export const useCountStore = defineStore('count', () => {
         const count = await getCount()
         total_count.value = count.total_count
         this_year_count.value = count.this_year_count
+        visits.value = count.visit_count
+        downloads.value = count.download_count
     }
 
     return {

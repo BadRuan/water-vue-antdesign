@@ -1,10 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { DownloadOutlined } from '@ant-design/icons-vue'
-import { useCountStore } from '@/store/count.ts'
+import { useRecentlyStore } from '@/store/recently'
 
 const size = ref('large');
-const countStore = useCountStore()
+const recentlyStore = useRecentlyStore()
+const { recently_data, get_recently } = recentlyStore
+
+const columns = [
+    {
+        title: '站点代码',
+        dataIndex: 'stcd',
+    },
+    {
+        title: '站点名称',
+        dataIndex: 'name',
+    },
+    {
+        title: '水位',
+        dataIndex: 'current',
+    },
+    {
+        title: '时间',
+        dataIndex: 'tm',
+    },
+]
+
+onMounted(() => {
+    get_recently()
+})
 
 </script>
 
@@ -23,8 +47,7 @@ const countStore = useCountStore()
                     <p>4、 去年同期 8:00 水位</p>
                     <p>5、 今日昨日8:00 水位对比</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" href="/table/1" target="_blank"
-                        @click="countStore.clickDownload()" :size="size">
+                    <a-button type="primary" shape="round" href="/table/1" target="_blank" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>
@@ -38,8 +61,7 @@ const countStore = useCountStore()
                     <p>2、 4小时前整点时间对应水位</p>
                     <p>3、 8小时前整点时间对应水位</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" href="/table/2" target="_blank"
-                        @click="countStore.clickDownload()" :size="size">
+                    <a-button type="primary" shape="round" href="/table/2" target="_blank" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>
@@ -53,8 +75,7 @@ const countStore = useCountStore()
                     <p>2、 4小时前整点时间对应水位</p>
                     <p>3、 8小时前整点时间对应水位</p>
                     <a-divider />
-                    <a-button type="primary" shape="round" href="/table/2" target="_blank"
-                        @click="countStore.clickDownload()" :size="size">
+                    <a-button type="primary" shape="round" href="/table/2" target="_blank" :size="size">
                         <template #icon>
                             <DownloadOutlined />
                         </template>
@@ -83,5 +104,13 @@ const countStore = useCountStore()
             4、本站严格使用目标时间准确数据，有直接用，没有的就填写 0。
         </a-typography-paragraph>
     </div>
+
+    <a-divider />
+
+    <a-descriptions title="最新水位信息" bordered>
+        
+        <a-descriptions-item v-for="item in recently_data" :key="item.stcd" :label="item.name">最新水位：{{ item.current }}m （更新时间：{{ item.tm }}）</a-descriptions-item>
+    </a-descriptions>
+    <a-button type="link" @click="get_recently">点击更新最新状态</a-button>
 
 </template>

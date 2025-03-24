@@ -1,34 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { DownloadOutlined } from '@ant-design/icons-vue'
 import { useRecentlyStore } from '@/store/recently'
 
 const size = ref('large');
 const recentlyStore = useRecentlyStore()
 const { recently_data, get_recently } = recentlyStore
-
-const columns = [
-    {
-        title: '站点代码',
-        dataIndex: 'stcd',
-    },
-    {
-        title: '站点名称',
-        dataIndex: 'name',
-    },
-    {
-        title: '水位',
-        dataIndex: 'current',
-    },
-    {
-        title: '时间',
-        dataIndex: 'tm',
-    },
-]
-
-onMounted(() => {
-    get_recently()
-})
 
 </script>
 
@@ -108,8 +85,8 @@ onMounted(() => {
     <a-divider />
 
     <a-descriptions title="最新水位信息" bordered>
-        
-        <a-descriptions-item v-for="item in recently_data" :key="item.stcd" :label="item.name">最新水位：{{ item.current }}m （更新时间：{{ item.tm }}）</a-descriptions-item>
+        <a-descriptions-item v-for="item in recently_data" :key="item.stcd" :label="item.name">最新水位：{{ item.current }}m
+            （更新时间：{{ item.tm }}）</a-descriptions-item>
     </a-descriptions>
     <a-button type="link" @click="get_recently">点击更新最新状态</a-button>
 

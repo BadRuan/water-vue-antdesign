@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useStoryStore } from '@/store/story'
 
 const storyStore = useStoryStore()
-const { storys, get_story } = storyStore
-
-onMounted(() => {
-    get_story()
-})
+const { storys } = storyStore
 
 </script>
 

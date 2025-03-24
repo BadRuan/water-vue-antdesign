@@ -1,11 +1,22 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useCountStore } from '@/store/count.ts'
+import { useRecentlyStore } from '@/store/recently'
+import { useStoryStore } from '@/store/story'
+
 
 const countStore = useCountStore()
 const { total_count, this_year_count, visits, downloads } = storeToRefs(countStore)
 
+const recentlyStore = useRecentlyStore()
+const { get_recently } = recentlyStore
+
+const storyStore = useStoryStore()
+const { get_story } = storyStore
+
 countStore.loadData()
+get_recently()
+get_story()
 </script>
 
 <template>
@@ -17,7 +28,7 @@ countStore.loadData()
     <a-typography-paragraph>
         传统水位数据发布依赖人工查询记录，耗时耗力，且数据易摘抄错误，又或者达到相应水位而忘记标注对应颜色情况时有发生，尤其是在防汛夜班期间。
     </a-typography-paragraph>
-    
+
     <a-typography-title :level="2">诞生</a-typography-title>
     <a-typography-paragraph>
         「鸠江水位小助手」应防汛值班工作需求而生，以<a-typography-text mark>自动水位数据提取</a-typography-text>+<a-typography-text
